@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/tom/Downloads/avs/Step0/neuron.cpp
+cstdlib
+-
+neuron.h
+/home/tom/Downloads/avs/Step0/neuron.h
+
+/home/tom/Downloads/avs/Step0/neuron.h
+
