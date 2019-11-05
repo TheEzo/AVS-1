@@ -21,5 +21,7 @@ float evalNeuron(
 		result += input[i] * weights[i * neuronCount + neuronId];
 	result += bias;
 
+	//TODO: Step0 - Fill in the implementation, all the required arguments are passed.
+    //              If you don't use them all you are doing something wrong!
     return result > 0 ? result : 0;
 }
