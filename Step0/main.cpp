@@ -269,7 +269,7 @@ void evaluateLayer(
 )
 {
   // For each neuron in the layer calculate its output
-  #pragma omp simd
+  //TODO: Step1 - enforce vectorization of this loop
   for (size_t i = 0; i < neuronCount; i++)
   {
     //TODO: Step2 - Modify "evalNeuron" to work with transposed weights
