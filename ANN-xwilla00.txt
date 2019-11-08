@@ -1,6 +1,6 @@
 Architektura výpočetních systému (AVS 2019)
 Projekt č. 1 (ANN)
-Login: xlogin00
+Login: xwilla00
 
 U každého kroku proveďte měření vypočtu pro dataset dostupný na https://www.fit.vutbr.cz/~ibordovsky/avs/datasets/bigDataset.h5
 Správnost výpočtu můžete porovnat pomocí python 3 skriptu "Scripts/compareOutputs.py" s referenčním řešením.

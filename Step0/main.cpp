@@ -1,7 +1,7 @@
 /*
  * Architektury výpočetních systémů (AVS 2019)
  * Projekt c. 1 (ANN)
- * Login: xlogin00
+ * Login: xwilla00
  */
 
 #include <iostream>
@@ -269,7 +269,7 @@ void evaluateLayer(
 )
 {
   // For each neuron in the layer calculate its output
-  //TODO: Step1 - enforce vectorization of this loop
+  #pragma omp simd
   for (size_t i = 0; i < neuronCount; i++)
   {
     //TODO: Step2 - Modify "evalNeuron" to work with transposed weights
