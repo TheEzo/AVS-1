@@ -23,7 +23,6 @@
  * @param bias          - bias for each neuron (inputSize)
  * @param output        - pointer to store the results
  */
-#pragma omp declare simd
 void evaluateLayer(
   size_t inputSize,
   size_t neuronCount,
