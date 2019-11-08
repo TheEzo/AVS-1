@@ -1,0 +1,7 @@
+/home/tezzo/projects/AVS-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/Step0/CMakeFiles/edit_cache.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/Step0/CMakeFiles/ANN_0.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/Step0/CMakeFiles/neuron_0.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/Step0/CMakeFiles/rebuild_cache.dir
+/home/tezzo/projects/AVS-1/cmake-build-debug/Step0/CMakeFiles/main_0.dir
