@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tom/Downloads/avs/Step0/main.cpp" "/home/tom/Downloads/avs/build/Step0/CMakeFiles/main_0.dir/main.cpp.o"
+  "/home/tom/Downloads/avs/Step1/neuron.cpp" "/home/tom/Downloads/avs/build/Step1/CMakeFiles/neuron_1.dir/neuron.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

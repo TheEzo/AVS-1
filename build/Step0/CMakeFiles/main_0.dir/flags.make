@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/c++
 CXX_FLAGS =  -fopenmp -O3 -DNDEBUG   -march=native -std=gnu++11
 
-CXX_DEFINES = -D_FORTIFY_SOURCE=2
+CXX_DEFINES = -DWITH_PAPI -D_FORTIFY_SOURCE=2
 
-CXX_INCLUDES = -I/usr/include/hdf5/serial 
+CXX_INCLUDES = -I/usr/include/hdf5/serial -I/usr/local/include -I/home/tom/Downloads/avs/PapiHeader 
 
