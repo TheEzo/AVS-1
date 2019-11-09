@@ -150,8 +150,8 @@ int main(int argc, char* argv[])
 
   // Memory for the outputs from each layer. First two are reused for each input picture.
   // The last output holds the classification results of all input pictures.
-  float* output1 = allocateMemory(layerSize);
-  float* output2 = allocateMemory(layerSize);
+  float* output1 = allocateMemory(layerSize * imageCount);
+  float* output2 = allocateMemory(layerSize * imageCount);
   float* output3 = allocateMemory(imageCount * outputSize);
 
   #ifdef WITH_PAPI
@@ -163,14 +163,14 @@ int main(int argc, char* argv[])
   transpose2D(weight3, outputSize, layerSize);
 
   for (size_t i = 0; i < imageCount; i++)
-  {
-    // The fist layer 784 -> 512
-    evaluateLayer(imagePixels, layerSize, &input[i * imagePixels], weight1, bias1, output1);
-    // The second layer 512 -> 512
-    evaluateLayer(layerSize, layerSize, output1, weight2, bias2, output2);
-    // The third layer 512 -> 10
-    evaluateLayer(layerSize, outputSize, output2, weight3, bias3, &output3[i*outputSize]);
-  }
+    evaluateLayer(imagePixels, layerSize, input + i * imagePixels, weight1, bias1, output1 + i * layerSize);
+
+  for (size_t i = 0; i < imageCount; i++)
+    evaluateLayer(layerSize, layerSize, output1 + i * layerSize, weight2, bias2, output2 + i * layerSize);
+
+  for (size_t i = 0; i < imageCount; i++)
+    evaluateLayer(layerSize, outputSize, output2 + i * layerSize, weight3, bias3, output3 + i * outputSize);
+
   #ifdef WITH_PAPI
   papi_routines["network"].Stop();
   papi_routines.PrintScreen();

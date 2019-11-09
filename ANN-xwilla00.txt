@@ -31,9 +31,11 @@ L2 miss [%]:                            99.8%
 L3 miss [%]:                            0.0387%
 
 Jaké pragmy bylo potřeba přidat?
--
+- #pragma omp simd
 Které dovětky k pragmám jste použili a jaky měly vliv na kompilátorem generované funkce? (main.cpp.optrpt/neuron.cpp.optrpt)
--
+- #pragma omp declare simd simdlen(8) uniform(inputSize, neuronCount, input, weight) linear(neuronId)
+  - uniform deklaruje, že pro každý krok simd smičky se hodnoty nemění, tudíž je jednodušší přednačítání dat
+  - dovětky obecně zajišťují rychlejší průběh funkcí, pokud se nejedná o dovětek, který je použit bez znalosti čistě náhodně, takový může i rychlost vykonávání kódu zpomalit
 
 
 Krok 2: přístupy do paměti
