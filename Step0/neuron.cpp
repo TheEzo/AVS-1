@@ -20,6 +20,5 @@ float evalNeuron(
 	for(size_t i = 0; i < inputSize; i++)
 		result += input[i] * weights[i * neuronCount + neuronId];
 	result += bias;
-
     return result > 0 ? result : 0;
 }
