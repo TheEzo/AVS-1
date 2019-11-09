@@ -8,27 +8,27 @@ Pro bigDataset je dostupný na https://www.fit.vutbr.cz/~ibordovsky/avs/datasets
 
 Krok 0: základní implementace
 =============================
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 193.966
+Výkon skalárních operací [MFLOPS]:      37.5763
+Výkon vektorových operací [MFLOPS]:     1143.16
+L1 miss [%]:                            84.39576
+L2 miss [%]:                            100
+L3 miss [%]:                            0.00733
 
 Které PAPI_EVENTS jste použili pro získání počtu výpadků v paměti?
-HW countery pro L1:
-HW countery pro L2:
-HW countery pro L3:
+HW countery pro L1: PAPI_L1_DCM, PAPI_SR_INS, PAPI_LD_INS
+HW countery pro L2: PAPI_L2_TCM, PAPI_L2_TCA
+HW countery pro L3: PAPI_L3_TCM, PAPI_L3_TCA
 
 
 Krok 1: vektorizace funkcí
 ===================================
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 38.0787
+Výkon skalárních operací [MFLOPS]:      0.295345
+Výkon vektorových operací [MFLOPS]:     5628.16
+L1 miss [%]:                            49.64835
+L2 miss [%]:                            99.8%
+L3 miss [%]:                            0.0387%
 
 Jaké pragmy bylo potřeba přidat?
 -
@@ -40,13 +40,15 @@ Krok 2: přístupy do paměti
 =============================
 a) S dovětky
 (Sepište všechyn použité dovětky):
+#pragma omp declare simd simdlen(8) uniform(inputSize, input, bias) linear(weight:512)
+#pragma omp declare simd simdlen(8) uniform(inputSize, input, bias) linear(weight:784)
 
-Celkový čas [s]: 22.05
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 23.0166
+Výkon skalárních operací [MFLOPS]:      175.766
+Výkon vektorových operací [MFLOPS]:     14741.6
+L1 miss [%]:                            14.834797
+L2 miss [%]:                            48.2
+L3 miss [%]:                            0.0616
 
 b) Bez dovětků
 Některé dovětky maji negativní dopad na výkon, přestože kompilátor tvrdí opak. Které?
@@ -64,15 +66,15 @@ Proč mají dovětky negativní efekt na výkon?
 
 Krok 3.1: přesun #pragma omp simd
 ===================================
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 22.7543
+Výkon skalárních operací [MFLOPS]:      177.398
+Výkon vektorových operací [MFLOPS]:     14844.9
+L1 miss [%]:                            14.9176
+L2 miss [%]:                            47.8
+L3 miss [%]:                            0.0848
 
 Jaký dovětek je potřeba přidat?
--
+- reduction(+:result)
 
 Krok 3.2: vykonání po vrstvách místo po obrázcích
 ===================================

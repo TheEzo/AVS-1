@@ -3,5 +3,5 @@ build/
 .idea/
 cmake-build-debug/
 Data/bigDataset.h5
-*.optrpt
+*.optrpt*
 
