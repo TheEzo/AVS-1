@@ -41,7 +41,7 @@ Krok 2: přístupy do paměti
 a) S dovětky
 (Sepište všechyn použité dovětky):
 
-Celkový čas [s]:
+Celkový čas [s]: 22.05
 Výkon skalárních operací [MFLOPS]:      ??
 Výkon vektorových operací [MFLOPS]:     ??
 L1 miss [%]:                            ??
