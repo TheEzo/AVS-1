@@ -34,14 +34,16 @@ Jaké pragmy bylo potřeba přidat?
 - #pragma omp simd
 Které dovětky k pragmám jste použili a jaky měly vliv na kompilátorem generované funkce? (main.cpp.optrpt/neuron.cpp.optrpt)
 - #pragma omp declare simd simdlen(8) uniform(inputSize, neuronCount, input, weight) linear(neuronId)
-  - uniform deklaruje, že pro každý krok simd smičky se hodnoty nemění, tudíž je jednodušší přednačítání dat
+  - uniform deklaruje, že pro každý krok simd smičky se hodnoty nemění, tudíž přednačítání dat je jednodušší
   - dovětky obecně zajišťují rychlejší průběh funkcí, pokud se nejedná o dovětek, který je použit bez znalosti čistě náhodně, takový může i rychlost vykonávání kódu zpomalit
+    - v tomto případě se používají dovětky pro vektorizaci výpočtů
 
 
 Krok 2: přístupy do paměti
 =============================
 a) S dovětky
 (Sepište všechyn použité dovětky):
+#pragma omp declare simd simdlen(8) uniform(inputSize, input, weight, bias)
 #pragma omp declare simd simdlen(8) uniform(inputSize, input, bias) linear(weight:512)
 #pragma omp declare simd simdlen(8) uniform(inputSize, input, bias) linear(weight:784)
 
@@ -54,16 +56,17 @@ L3 miss [%]:                            0.0616
 
 b) Bez dovětků
 Některé dovětky maji negativní dopad na výkon, přestože kompilátor tvrdí opak. Které?
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 22.7625
+Výkon skalárních operací [MFLOPS]:      176.077
+Výkon vektorových operací [MFLOPS]:     14730.7
+L1 miss [%]:                            14.92542
+L2 miss [%]:                            47.9
+L3 miss [%]:                            0.0621
 
 Proč mají dovětky negativní efekt na výkon?
 (neklasifikovana odpověď, můžete vynechat, ale může vynést přiklonění k bodu u věcí které jsou na hraně :-) )
--
+- Podle obecné diskuze by to mělý být dovětky linear(weight:N), avšak to se u tohohle kódu prokázat nepodařilo, jelikož kód běží stejně rychle
+- Teoretické zpomalení vidím v tím, že uniform deklaruje, že proměnná se neliší v žádném kroku cyklu, avšak linear vytváří privátní proměnnou pro každý krok smyčky
 
 
 Krok 3.1: přesun #pragma omp simd
@@ -88,7 +91,7 @@ L2 miss [%]:                            54.9
 L3 miss [%]:                            0.184
 
 Popište, jaký dopad na výkon mají výpadky v cache.
--
+- Při výpadku je potřeba data hledat na vyšší úrovní, tedy L2, L3, RAM, Disk, což zpožďuje vykonávání kódu o stovky až tisíce taktů
 
 Krok 4: režie funkcí, zarovnání paměti
 ===================================
@@ -97,7 +100,8 @@ Výkon skalárních operací [MFLOPS]:      24.1611
 Výkon vektorových operací [MFLOPS]:     16374.6
 L1 miss [%]:                            16.23403
 L2 miss [%]:                            57.1
-L3 miss [%]:                            0.14
+L3 miss [%]:                            0.124
 
 Proč není zrychlení již výrazné? Na jaké typy problémů cílí tyto optimalizace?
--
+- Prefetcher načítá jen určitý blok dat pro výpočet, který se vejde do paměti cache
+- Zarovnaná alokace cílí na úlohy, které používají velké množství dat, které se nevejdou do paměti jako jeden celek
