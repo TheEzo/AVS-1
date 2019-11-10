@@ -80,24 +80,24 @@ Jaký dovětek je potřeba přidat?
 
 Krok 3.2: vykonání po vrstvách místo po obrázcích
 ===================================
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 21.7303
+Výkon skalárních operací [MFLOPS]:      298.787
+Výkon vektorových operací [MFLOPS]:     14018
+L1 miss [%]:                            15.42353
+L2 miss [%]:                            54.9
+L3 miss [%]:                            0.184
 
 Popište, jaký dopad na výkon mají výpadky v cache.
 -
 
 Krok 4: režie funkcí, zarovnání paměti
 ===================================
-Celkový čas [s]:
-Výkon skalárních operací [MFLOPS]:      ??
-Výkon vektorových operací [MFLOPS]:     ??
-L1 miss [%]:                            ??
-L2 miss [%]:                            ??
-L3 miss [%]:                            ??
+Celkový čas [s]: 20.5417
+Výkon skalárních operací [MFLOPS]:      24.1611
+Výkon vektorových operací [MFLOPS]:     16374.6
+L1 miss [%]:                            16.23403
+L2 miss [%]:                            57.1
+L3 miss [%]:                            0.14
 
 Proč není zrychlení již výrazné? Na jaké typy problémů cílí tyto optimalizace?
 -
